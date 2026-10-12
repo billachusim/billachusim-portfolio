@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Plus,
   Minus,
+  Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,9 +21,21 @@ import {
   skillGroups,
   profile,
   articles,
+  verifiedMetrics,
+  communityInitiatives,
+  milestones,
+  photos,
   type Project,
 } from "@/content/portfolio";
-import { PageIntro, ContactCTA, PortraitSlot, ProjectCard, ProjectVisual } from "./shared";
+import {
+  PageIntro,
+  ContactCTA,
+  PortraitSlot,
+  ProjectCard,
+  ProjectVisual,
+  PhoneFrame,
+  StoreButtons,
+} from "./shared";
 export function AboutPage() {
   return (
     <>
@@ -45,6 +58,14 @@ export function AboutPage() {
             possible: a useful product, a more reliable system, a better experience, or a new
             opportunity for someone learning to build.
           </p>
+          <h3>Where it started</h3>
+          <p>
+            In 2012 I started Social Faculty, a youth guidance community. Young people wrote to us
+            every day about relationships, school, work and family, and in 2015–16 alone we held
+            real-time conversations with more than 3,000 new people on WhatsApp. That demand became
+            my first product, Dear Claire, which launched in 2017 and is still live today alongside
+            three newer apps.
+          </p>
           <h3>My engineering foundation</h3>
           <p>
             I hold a master’s degree in Systems Engineering from the University of Lagos. That
@@ -59,12 +80,13 @@ export function AboutPage() {
           </p>
           <h3>Building a venture, growing people</h3>
           <p>
-            I founded Tech Faculty NG in 2022 at Digital Village, Nnewi, Anambra State. As Founder &
-            Lead Technical Developer, I am the lead technical architect behind its learning
-            platforms and Talent Pool, matching graduates to paid tech roles. Tech Faculty NG is
-            licensed by FMSTI through NBTI. Through training, mentoring, campus development and
-            community initiatives, I work to help people move from learning concepts to building
-            things.
+            I founded Tech Faculty NG in 2022 at Digital Village, Nnewi, Anambra State, so that
+            young people in the South-East could learn job-ready tech skills without moving to
+            Lagos. As Founder & Lead Technical Developer, I build its learning platforms and the
+            Talent Pool that matches graduates to paid tech roles. It is licensed by FMSTI through
+            NBTI and has trained more than 6,000 students. Through training, mentoring, campus
+            development and community initiatives, I work to help people move from learning concepts
+            to building things.
           </p>
           <p>
             My approach to leadership stays close to the work. I value practical guidance, shared
@@ -279,6 +301,11 @@ export function ProjectDetail({ slug }: { slug: string }) {
         description={p.summary}
       />
       <section className="container">
+        {p.appStoreUrl && (
+          <div className="detail-title-row">
+            <StoreButtons project={p} />
+          </div>
+        )}
         <ProjectVisual project={p} large />
         <div className="project-facts">
           {p.categories.length > 0 && (
@@ -307,13 +334,25 @@ export function ProjectDetail({ slug }: { slug: string }) {
           )}
         </div>
         <div className="prose case-study">
+          {p.highlights && (
+            <section>
+              <h2>{p.tagline || "Highlights"}</h2>
+              <ul className="check-list highlight-list">
+                {p.highlights.map((h) => (
+                  <li key={h}>
+                    <Check size={15} /> {h}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           {p.sections.map((s) => (
             <section key={s.title}>
               <h2>{s.title}</h2>
               <p>{s.content}</p>
             </section>
           ))}
-          {p.sections.length === 0 && (
+          {p.sections.length === 0 && !p.highlights && (
             <div className="case-note">
               <span className="eyebrow">PROJECT NOTES</span>
               <p>
@@ -333,16 +372,13 @@ export function ProjectDetail({ slug }: { slug: string }) {
               </p>
             </div>
           ))}
-          {p.gallery.map((image, i) => (
-            <img
-              key={image}
-              src={image}
-              alt={`${p.name} screenshot ${i + 1}`}
-              loading="lazy"
-              width={900}
-              height={600}
-            />
-          ))}
+          {p.gallery.length > 0 && (
+            <div className="screenshot-strip">
+              {p.gallery.map((image, i) => (
+                <PhoneFrame key={image} src={image} alt={`${p.name} screenshot ${i + 1}`} />
+              ))}
+            </div>
+          )}
           <div className="external-links">
             {[
               [p.liveUrl, p.liveUrl?.includes("play.google.com") ? "Google Play" : "Visit project"],
@@ -465,10 +501,42 @@ export function FounderPage() {
         description="Tech Faculty NG is where my work as an engineer meets my commitment to education, mentorship, and community."
       />
       <section className="container">
-        <ProjectVisual
-          project={projects.find((p) => p.slug === "tech-faculty-ng") as Project}
-          large
-        />
+        <div className="founder-stats">
+          {verifiedMetrics.slice(0, 2).map((m) => (
+            <div key={m.label}>
+              <strong>{m.value}</strong>
+              <p>{m.label}</p>
+            </div>
+          ))}
+          <div>
+            <strong>2022</strong>
+            <p>Founded at the Digital Village, Nnewi</p>
+          </div>
+          <div>
+            <strong>4.9★</strong>
+            <p>From 90 Google reviews (Oct 2026)</p>
+          </div>
+        </div>
+        <a
+          href="https://techfaculty.ng/outcomes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-link"
+        >
+          How Tech Faculty counts these numbers <ArrowUpRight size={15} />
+        </a>
+        {photos.some((ph) => ph.src) && (
+          <div className="photo-grid">
+            {photos
+              .filter((ph) => ph.src)
+              .map((ph) => (
+                <figure key={ph.src}>
+                  <img src={ph.src} alt={ph.alt} loading="lazy" width={800} height={600} />
+                  <figcaption>{ph.caption}</figcaption>
+                </figure>
+              ))}
+          </div>
+        )}
         <div className="founder-story prose">
           <span className="eyebrow">MY FOUNDER STORY</span>
           <h2>A place to learn by building.</h2>
@@ -497,16 +565,33 @@ export function FounderPage() {
             and agent-based training. I want learners to understand these capabilities while
             retaining the engineering judgment that makes technology useful and dependable.
           </p>
-          <h3>Nnewi Tech Meetup</h3>
+          <h3>Community and fellowship</h3>
+          {communityInitiatives.map((c) => (
+            <p key={c.name}>
+              <strong>{c.name}.</strong> {c.summary}{" "}
+              <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-link">
+                Learn more <ArrowUpRight size={14} />
+              </a>
+            </p>
+          ))}
+          <h3>Before Tech Faculty</h3>
           <p>
-            I founded and host Nnewi Tech Meetup, held monthly at Tech Faculty HQ. These gatherings
-            extend the learning experience beyond training programs. They create space for
-            connection, shared learning and practical technology conversations.
+            My founder journey began in 2012 with Social Faculty, a youth guidance community that
+            became the studio behind Dear Claire, Alter Ego, Eavesdrop and AI Clopedia.
           </p>
           <Link to="/projects/$slug" params={{ slug: "tech-faculty-ng" }} className="text-link">
             Tech Faculty NG project notes <ArrowUpRight size={18} />
           </Link>
         </div>
+        <ol className="milestones section">
+          {milestones.map((m) => (
+            <li key={m.title}>
+              <span className="milestone-year">{m.year}</span>
+              <h3>{m.title}</h3>
+              <p>{m.text}</p>
+            </li>
+          ))}
+        </ol>
       </section>
       <ContactCTA />
     </>
@@ -809,6 +894,12 @@ export function ContactPage() {
               {profile.twitter && (
                 <a href={profile.twitter} target="_blank" rel="noopener noreferrer">
                   X (Twitter)
+                  <ArrowUpRight size={16} />
+                </a>
+              )}
+              {profile.instagram && (
+                <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
+                  Instagram
                   <ArrowUpRight size={16} />
                 </a>
               )}

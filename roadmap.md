@@ -5,7 +5,10 @@
 - [x] About, experience, skills and founder pages
 - [x] Insights, CV and honest contact form
 - [x] Metadata, documentation, route and interaction checks
+- [x] v2 upgrade: app showcase with store screenshots and icons, sourced impact numbers, journey timeline, community initiatives, features & talks, four more articles (research notes: project file `portfolio/research-dossier.md`)
 ## Awaiting supplied assets or configuration
-- [ ] Portrait, remaining project screenshots and actual CV — awaiting Bill’s files
+- [ ] Confirm the Dear Claire "1M+ downloads" definition (Google Play currently shows 10K+)
+- [x] Portrait and event photos — supplied by Bill, added in `src/assets/photos/`
+- [ ] Actual CV — awaiting Bill’s file
 - [ ] Email/GitHub and message delivery — awaiting contact details and delivery configuration
 - [ ] Production sitemap — awaiting published domain

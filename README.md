@@ -3,10 +3,12 @@
 A React / TypeScript portfolio built with TanStack Start and Tailwind CSS v4.
 
 ## Content and factual standards
-All editable content is in `src/content/portfolio.ts`. Keep unverified technologies, dates, metrics, statuses, responsibilities and links empty. Unknown project status is stored as `Status to be confirmed` and is not claimed on project details. Alter Ego is confirmed as a separate product. Four products now include verified artwork and official app store links. Historical Tech Faculty NG metrics are intentionally unpublished: add only with reporting date and definition.
+All editable content is in `src/content/portfolio.ts`. Keep unverified technologies, dates, metrics, statuses, responsibilities and links empty. Unknown project status is stored as `Status to be confirmed` and is not claimed on project details. Alter Ego is confirmed as a separate product. Four products now include verified artwork and official app store links. Headline metrics in `verifiedMetrics` each carry a definition, reporting date and public source URL.
 
 ## Photographs and artwork
-Set `profile.portrait` to your uploaded portrait's URL. The temporary home image is an editorial workspace, not Bill's photograph. Project tiles are explicitly labelled typographic artwork placeholders, not product screenshots or logos. Set a project's `thumbnail` and `gallery` to your supplied image URLs to replace them. Use Lovable Assets for uploaded files. The shared image layout maintains stable aspect ratios.
+Live apps show screenshots and icons loaded from their official App Store and Google Play listings (`productAssets` in `src/content/portfolio.ts`). They hide themselves if a listing image disappears; re-upload them as Lovable Assets for permanence. Bill's supplied photographs live in `src/assets/photos/` as compressed WebP files (about 1400px on the long edge) and are listed in `photos`; add new ones the same way, with descriptive alt text.
+
+`profile.portrait` (home hero) and `profile.aboutPhoto` (About page) point at Bill's own photographs. Project tiles are explicitly labelled typographic artwork placeholders, not product screenshots or logos. Set a project's `thumbnail` and `gallery` to your supplied image URLs to replace them. Use Lovable Assets for uploaded files. The shared image layout maintains stable aspect ratios.
 
 ## Projects, experience and skills
 Add or edit entries in the `seed` project collection and extend fields through the typed project data. Each project supports categories, technologies, status, role, dates, thumbnail, gallery, live/repository/app-store URLs, featured and published flags, sections and verified metrics. Search matches names, summaries, categories and technologies; category and status filters combine. Add verified case-study sections for context, role, solution, architecture, trade-offs, outcomes and lessons as available. Project detail pages are generated from the same data. Unknown-description details carry noindex.
@@ -29,4 +31,4 @@ Each content route provides its own title, description, Open Graph metadata and 
 Run `bun run test`. Preview with the managed development server. The site includes keyboard focus states, a skip link, reduced-motion behavior and an accessible mobile navigation menu. Missing pages receive the custom 404.
 
 ## Still needed from Bill
-Professional portrait and project screenshots; actual CV; professional email and GitHub URL; contact delivery integration; confirmed project technologies, current statuses, roles, milestones and case-study evidence; experience engagement details; dated impact metrics; any additional original articles.
+Actual CV; professional email and GitHub URL; contact delivery integration; confirmed project technologies, current statuses, roles, milestones and case-study evidence; experience engagement details; dated impact metrics; any additional original articles.
