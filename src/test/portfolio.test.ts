@@ -48,7 +48,7 @@ describe("Project filters", () => {
     ).toEqual(["Reengage African Voices"]);
     expect(
       filterProjects("Mobile Applications", "All projects", "All statuses").map((p) => p.name),
-    ).toEqual(["Dear Claire: Secret Diary Chat", "Dialer App"]);
+    ).toEqual(["Dear Claire: Secret Diary Chat", "Alter Ego: Private Self Map", "Eavesdrop: Live Stories", "Dialer App"]);
   });
   it("combines category and status with search", () => {
     expect(filterProjects("claire", "Web Applications", "All statuses")).toHaveLength(0);
