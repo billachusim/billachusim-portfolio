@@ -1890,3 +1890,6 @@ a.bg-primary {
     font-size: 30px;
   }
 }
+.biography-layout > * {min-width:0}
+.portrait-placeholder {height:auto;min-height:0;align-self:start}
+@media (min-width:561px) and (max-width:800px){.biography-layout {grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.portrait-initials{font-size:105px}.portrait-placeholder {aspect-ratio:4/5}.portrait-placeholder .eyebrow {font-size:7px}}
