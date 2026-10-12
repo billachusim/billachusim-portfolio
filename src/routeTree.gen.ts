@@ -15,10 +15,10 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as FounderRouteImport } from './routes/founder'
-import { Route as InsightsRouteImport } from './routes/insights'
-import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -51,25 +51,25 @@ const FounderRoute = FounderRouteImport.update({
   path: '/founder',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsRoute = InsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsRoute = ProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SkillsRoute = SkillsRouteImport.update({
   id: '/skills',
   path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => InsightsRoute,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/$slug',
@@ -84,11 +84,11 @@ export interface FileRoutesByFullPath {
   '/cv': typeof CvRoute
   '/experience': typeof ExperienceRoute
   '/founder': typeof FounderRoute
-  '/insights': typeof InsightsRouteWithChildren
-  '/projects': typeof ProjectsRouteWithChildren
   '/skills': typeof SkillsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -97,11 +97,11 @@ export interface FileRoutesByTo {
   '/cv': typeof CvRoute
   '/experience': typeof ExperienceRoute
   '/founder': typeof FounderRoute
-  '/insights': typeof InsightsRouteWithChildren
-  '/projects': typeof ProjectsRouteWithChildren
   '/skills': typeof SkillsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/insights': typeof InsightsIndexRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -111,11 +111,11 @@ export interface FileRoutesById {
   '/cv': typeof CvRoute
   '/experience': typeof ExperienceRoute
   '/founder': typeof FounderRoute
-  '/insights': typeof InsightsRouteWithChildren
-  '/projects': typeof ProjectsRouteWithChildren
   '/skills': typeof SkillsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,11 +126,11 @@ export interface FileRouteTypes {
     | '/cv'
     | '/experience'
     | '/founder'
-    | '/insights'
-    | '/projects'
     | '/skills'
     | '/insights/$slug'
     | '/projects/$slug'
+    | '/insights/'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,11 +139,11 @@ export interface FileRouteTypes {
     | '/cv'
     | '/experience'
     | '/founder'
-    | '/insights'
-    | '/projects'
     | '/skills'
     | '/insights/$slug'
     | '/projects/$slug'
+    | '/insights'
+    | '/projects'
   id:
     | '__root__'
     | '/'
@@ -152,11 +152,11 @@ export interface FileRouteTypes {
     | '/cv'
     | '/experience'
     | '/founder'
-    | '/insights'
-    | '/projects'
     | '/skills'
     | '/insights/$slug'
     | '/projects/$slug'
+    | '/insights/'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,9 +166,9 @@ export interface RootRouteChildren {
   CvRoute: typeof CvRoute
   ExperienceRoute: typeof ExperienceRoute
   FounderRoute: typeof FounderRoute
-  InsightsRoute: typeof InsightsRouteWithChildren
-  ProjectsRoute: typeof ProjectsRouteWithChildren
   SkillsRoute: typeof SkillsRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -215,25 +215,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FounderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/insights': {
-      id: '/insights'
-      path: '/insights'
-      fullPath: '/insights'
-      preLoaderRoute: typeof InsightsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/skills': {
       id: '/skills'
       path: '/skills'
       fullPath: '/skills'
       preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights/$slug': {
@@ -242,6 +235,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/insights/$slug'
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof InsightsRoute
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/projects/$slug': {
       id: '/projects/$slug'
@@ -253,30 +253,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface InsightsRouteChildren {
-  InsightsSlugRoute: typeof InsightsSlugRoute
-}
-
-const InsightsRouteChildren: InsightsRouteChildren = {
-  InsightsSlugRoute: InsightsSlugRoute,
-}
-
-const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
-  InsightsRouteChildren,
-)
-
-interface ProjectsRouteChildren {
-  ProjectsSlugRoute: typeof ProjectsSlugRoute
-}
-
-const ProjectsRouteChildren: ProjectsRouteChildren = {
-  ProjectsSlugRoute: ProjectsSlugRoute,
-}
-
-const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
-  ProjectsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -284,9 +260,9 @@ const rootRouteChildren: RootRouteChildren = {
   CvRoute: CvRoute,
   ExperienceRoute: ExperienceRoute,
   FounderRoute: FounderRoute,
-  InsightsRoute: InsightsRouteWithChildren,
-  ProjectsRoute: ProjectsRouteWithChildren,
   SkillsRoute: SkillsRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
