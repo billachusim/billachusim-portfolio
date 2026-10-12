@@ -1,24 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { HomePage } from "@/components/portfolio/home";
+import { pageHead, profile } from "@/content/portfolio";
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: HomePage,
+  head: () => ({
+    ...pageHead(
+      "Founder, Engineer & AI Product Builder",
+      "Bill Nnamdi Achusim builds software products, scalable systems and AI-powered applications, combining hands-on engineering with product thinking.",
+      "/",
+    ),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Bill Nnamdi Achusim",
+          jobTitle: "Founder, Senior Software Engineer & AI Product Builder",
+          sameAs: [profile.linkedin, profile.twitter, profile.authorUrl],
+          alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lagos" },
+        }),
+      },
+    ],
+  }),
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
