@@ -1890,9 +1890,28 @@ a.bg-primary {
     font-size: 30px;
   }
 }
-.biography-layout > * {min-width:0}
-.portrait-placeholder {height:auto;min-height:0;align-self:start}
-@media (min-width:561px) and (max-width:800px){.biography-layout {grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.portrait-initials{font-size:105px}.portrait-placeholder {aspect-ratio:4/5}.portrait-placeholder .eyebrow {font-size:7px}}
+.biography-layout > * {
+  min-width: 0;
+}
+.portrait-placeholder {
+  height: auto;
+  min-height: 0;
+  align-self: start;
+}
+@media (min-width: 561px) and (max-width: 800px) {
+  .biography-layout {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+  .portrait-initials {
+    font-size: 105px;
+  }
+  .portrait-placeholder {
+    aspect-ratio: 4/5;
+  }
+  .portrait-placeholder .eyebrow {
+    font-size: 7px;
+  }
+}
 
 /* ── Portfolio v2: hero, app showcase, impact, journey ───────────────── */
 :root {
@@ -1983,14 +2002,16 @@ a.bg-primary {
 .hero-phone-2 {
   transform: translate(25%, -46%) rotate(8deg);
 }
-.hero-visual-portrait {
+.hero-visual.hero-visual-portrait {
   display: grid;
   place-items: center;
+  height: auto;
 }
 .hero-visual-portrait img {
   width: min(420px, 100%);
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center 20%;
   border-radius: 6px;
   box-shadow: var(--shadow-phone);
 }
@@ -2301,7 +2322,7 @@ a.bg-primary {
   padding: 0;
   margin: 44px 0 0;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 24px;
 }
 .milestones li {
@@ -2508,4 +2529,13 @@ a.bg-primary {
 .app-icon {
   object-fit: cover;
   position: static;
+}
+@media (max-width: 800px) {
+  .hero-visual.hero-visual-portrait {
+    height: auto;
+    padding-bottom: 40px;
+  }
+  .hero-visual-portrait img {
+    width: min(360px, 100%);
+  }
 }

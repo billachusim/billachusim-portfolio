@@ -335,10 +335,11 @@ export function ContactCTA() {
   );
 }
 export function PortraitSlot() {
-  return profile.portrait ? (
+  const src = profile.aboutPhoto || profile.portrait;
+  return src ? (
     <img
       className="portrait-slot"
-      src={profile.portrait}
+      src={src}
       alt="Bill Nnamdi Achusim"
       loading="lazy"
       width={600}

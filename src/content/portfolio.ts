@@ -2,6 +2,14 @@ import claireArt from "@/assets/dear-claire.webp.asset.json";
 import alterArt from "@/assets/alter-ego.webp.asset.json";
 import eavesdropArt from "@/assets/eavesdrop.webp.asset.json";
 import aiArt from "@/assets/ai-clopedia.webp.asset.json";
+import portraitImg from "@/assets/photos/bill-portrait.webp";
+import outdoorImg from "@/assets/photos/bill-outdoor.webp";
+import speakingImg from "@/assets/photos/meetup-speaking.webp";
+import certificateImg from "@/assets/photos/meetup-certificate.webp";
+import audienceImg from "@/assets/photos/meetup-audience.webp";
+import fellowshipImg from "@/assets/photos/ai-fellowship-laptop.webp";
+import trainingImg from "@/assets/photos/training-class.webp";
+import sessionImg from "@/assets/photos/nnewi-session.webp";
 export const profile = {
   name: "Bill Nnamdi Achusim",
   positioning: "Founder. Senior Software Engineer. AI Product Builder.",
@@ -19,7 +27,9 @@ export const profile = {
   license: "Licensed by FMSTI through NBTI",
   authorUrl: "https://techfaculty.ng/team/bill-achusim",
   cvUrl: "",
-  portrait: "",
+  portrait: portraitImg,
+  /** Informal photo used on the About page. */
+  aboutPhoto: outdoorImg,
   contactEndpoint: "",
 };
 export type Project = {
@@ -52,6 +62,7 @@ const seed: {
   summary: string;
   categories: string[];
   featured?: boolean;
+  thumbnail?: string;
   sections?: Project["sections"];
 }[] = [
   {
@@ -122,6 +133,7 @@ const seed: {
       "My technology education and innovation venture, connecting practical learning with real-world building.",
     categories: ["Entrepreneurship & Education"],
     featured: true,
+    thumbnail: trainingImg,
     sections: [
       {
         title: "Building beyond software",
@@ -622,13 +634,36 @@ export const liveApps = productAssets
  * Social platforms block automated downloads, so these await supplied files.
  */
 export const photos: { src: string; alt: string; caption: string }[] = [
-  { src: "", alt: "Bill Achusim hosting the Nnewi Tech Meetup", caption: "Nnewi Tech Meetup" },
   {
-    src: "",
-    alt: "Launch of the AI for Everything Fellowship",
+    src: speakingImg,
+    alt: "Bill Achusim speaking to the room at the Nnewi Tech Meetup",
+    caption: "Hosting the Nnewi Tech Meetup",
+  },
+  {
+    src: trainingImg,
+    alt: "A full Tech Faculty NG training class working at computers",
+    caption: "A training class at Tech Faculty NG",
+  },
+  {
+    src: certificateImg,
+    alt: "Bill Achusim presenting a certificate to a participant",
+    caption: "Certificate presentation, Nnewi Tech Meetup",
+  },
+  {
+    src: audienceImg,
+    alt: "Attendees seated at the Nnewi Tech Meetup",
+    caption: "The meetup audience",
+  },
+  {
+    src: fellowshipImg,
+    alt: "Bill Achusim at a laptop wearing an AI for Everything shirt",
     caption: "AI for Everything Fellowship",
   },
-  { src: "", alt: "Tech Faculty NG campus in Nnewi", caption: "Tech Faculty HQ, Nnewi" },
+  {
+    src: sessionImg,
+    alt: "A Nnewi Tech Faculty session with students around a table",
+    caption: "A session at Nnewi Tech Faculty",
+  },
 ];
 
 export const milestones: { year: string; title: string; text: string; sourceUrl?: string }[] = [
@@ -662,6 +697,11 @@ export const milestones: { year: string; title: string; text: string; sourceUrl?
     year: "2026",
     title: "Stanford fellowship · Senior engineering",
     text: "Completed a software engineering fellowship at Stanford University and took on senior engineering and AI evaluation work.",
+  },
+  {
+    year: "2026",
+    title: "micro1 Frontier Engineering Challenge",
+    text: "Took part in micro1’s Frontier Engineering Challenge 2026 and received a certificate of participation on 10 September 2026.",
   },
 ];
 

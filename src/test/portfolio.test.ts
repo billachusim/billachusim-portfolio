@@ -52,8 +52,12 @@ describe("Evidence-based portfolio content", () => {
       expect(p.gallery.length).toBeGreaterThan(0);
     }
   });
-  it("never renders unsupplied photographs", () => {
-    expect(photos.filter((p) => p.src)).toHaveLength(0);
+  it("only lists photographs that have a file and descriptive alt text", () => {
+    expect(photos.length).toBeGreaterThan(0);
+    for (const photo of photos) {
+      expect(photo.src).toBeTruthy();
+      expect(photo.alt.length).toBeGreaterThan(10);
+    }
   });
   it("preserves completed fellowship dates", () => {
     expect(experience.find((e) => e.organization === "Stanford University")?.dates).toBe(
