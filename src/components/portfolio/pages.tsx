@@ -716,9 +716,11 @@ export function CVPage() {
         <div className="prose cv-content">
           <h2>Professional summary</h2>
           <p>
-            I build software products, scalable systems, and AI-powered applications that turn ideas
-            into practical solutions. My work combines hands-on engineering, product thinking,
-            entrepreneurship and technology education.
+            Senior software and AI engineer with 12+ years of building and shipping production
+            software: backend platforms, AI agents and LLM applications, and consumer mobile apps. I
+            created four apps live on Google Play and the App Store, founded Tech Faculty NG, which
+            has trained 6,000+ students, and most recently evaluated frontier AI models and coding
+            agents on real-world engineering work.
           </p>
           <h2>Experience</h2>
           {experience.map((e) => (
