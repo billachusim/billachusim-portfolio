@@ -345,7 +345,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
           ))}
           <div className="external-links">
             {[
-              [p.liveUrl, p.liveUrl.includes("play.google.com") ? "Google Play" : "Visit project"],
+              [p.liveUrl, p.liveUrl?.includes("play.google.com") ? "Google Play" : "Visit project"],
               [p.repositoryUrl, "View repository"],
               [p.appStoreUrl, "App Store"],
             ].map(

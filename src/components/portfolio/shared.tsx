@@ -33,7 +33,7 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className={pathname === n.to ? "nav-link active" : "nav-link"}
+              className={pathname.replace(/\/$/, "") === n.to.replace(/\/$/, "") ? "nav-link active" : "nav-link"}
             >
               {n.name}
             </Link>
@@ -59,7 +59,7 @@ export function SiteHeader() {
       {open && (
         <nav id="mobile-nav" aria-label="Mobile navigation" className="mobile-nav">
           {nav.map((n) => (
-            <Link key={n.to} to={n.to}>
+            <Link key={n.to} to={n.to} onClick={() => setOpen(false)}>
               {n.name}
             </Link>
           ))}
@@ -88,6 +88,8 @@ export function SiteFooter() {
             <Link to="/founder">Founder & impact</Link>
             <Link to="/cv">CV</Link>
             <Link to="/contact">Contact</Link>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href={profile.twitter} target="_blank" rel="noopener noreferrer">X</a>
           </div>
         </div>
         <div className="footer-bottom">

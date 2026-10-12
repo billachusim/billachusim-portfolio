@@ -12,3 +12,4 @@
 - Keep portfolio content in typed modules separate from page presentation so factual updates do not require layout changes.
 - Use shared portfolio components and TanStack file routes for each public page so navigation and metadata remain consistent.
 - Gate contact delivery and CV downloads on explicitly configured destinations; never simulate a completed operation.
+- Public article previews link to verified original publications; do not reproduce unsupplied full article bodies.

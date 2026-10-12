@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HomePage } from "@/components/portfolio/home";
-import { pageHead } from "@/content/portfolio";
+import { pageHead, profile } from "@/content/portfolio";
 export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
@@ -17,6 +17,8 @@ export const Route = createFileRoute("/")({
           "@type": "Person",
           name: "Bill Nnamdi Achusim",
           jobTitle: "Founder, Senior Software Engineer & AI Product Builder",
+          sameAs: [profile.linkedin, profile.twitter, profile.authorUrl],
+          alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lagos" },
         }),
       },
     ],
