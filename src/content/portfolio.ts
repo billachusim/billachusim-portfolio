@@ -14,7 +14,7 @@ export const profile = {
   name: "Bill Nnamdi Achusim",
   positioning: "Founder. Senior Software Engineer. AI Product Builder.",
   email: "",
-  github: "",
+  github: "https://github.com/billachusim",
   linkedin: "https://www.linkedin.com/in/billachusim",
   twitter: "https://x.com/billachusim",
   instagram: "https://www.instagram.com/billachusim/",
@@ -26,7 +26,7 @@ export const profile = {
   founderLocation: "Digital Village, Nnewi, Anambra State",
   license: "Licensed by FMSTI through NBTI",
   authorUrl: "https://techfaculty.ng/team/bill-achusim",
-  cvUrl: "",
+  cvUrl: "/bill-achusim-cv.pdf",
   portrait: portraitImg,
   /** Informal photo used on the About page. */
   aboutPhoto: outdoorImg,
@@ -250,7 +250,7 @@ export const experience = [
     dates: "2026 — Present",
     type: "Professional role",
     description:
-      "My current career history includes a senior software engineering role with Micro1. Specific responsibilities and engagement details will be added when confirmed.",
+      "I design and build backend services, APIs and automation workflows for production software and AI-focused projects, and review Python, TypeScript, Node.js and SQL systems for correctness, scalability and maintainability.",
   },
   {
     organization: "Reengage African Voices",
@@ -258,15 +258,15 @@ export const experience = [
     dates: "2026 — Present",
     type: "Professional role",
     description:
-      "I work on backend engineering in the context of digital preservation, AI-powered workflows and integrations.",
+      "I architect the backend for a platform that preserves African oral histories and folklore: web and mobile apps for elderly storytellers’ recordings, a WhatsApp audio-ingestion pipeline, and AI agent workflows that process and organise the audio.",
   },
   {
     organization: "Mercor",
-    role: "AI project & evaluation work",
-    dates: "2026 · Period to be confirmed",
-    type: "Project engagement",
+    role: "AI Evaluation Specialist / Senior Software Engineer",
+    dates: "May — August 2026",
+    type: "Contract",
     description:
-      "My experience includes AI-related project and evaluation work. This is listed as a project engagement, not a claim of full-time employment.",
+      "I evaluated frontier AI models and coding agents on real engineering work: software solutions across the stack, multi-step agent reasoning and tool use, and AI-generated pull requests to real repositories. My structured feedback fed AI benchmarking, alignment and RLHF.",
   },
   {
     organization: "Stanford University",

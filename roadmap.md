@@ -9,6 +9,6 @@
 ## Awaiting supplied assets or configuration
 - [ ] Confirm the Dear Claire "1M+ downloads" definition (Google Play currently shows 10K+)
 - [x] Portrait and event photos — supplied by Bill, added in `src/assets/photos/`
-- [ ] Actual CV — awaiting Bill’s file
+- [x] Actual CV — tuned from Bill’s August 2026 résumé, in `public/bill-achusim-cv.pdf`
 - [ ] Email/GitHub and message delivery — awaiting contact details and delivery configuration
 - [ ] Production sitemap — awaiting published domain

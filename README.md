@@ -19,7 +19,7 @@ Update `experience` with confirmed dates, engagement types, responsibilities and
 Add entries to `articles` with a unique slug, title, summary, publicationDate, tags, coverImage, content paragraphs and `published: true`. They appear in Insights and at `/insights/your-slug`. Six real article previews are included with their verified publication dates and links to the originals at Tech Faculty NG. No unsupplied full article content has been invented.
 
 ## CV and professional links
-Set `profile.cvUrl` to the actual uploaded résumé PDF URL. A download action appears only then. LinkedIn and X are already configured with verified details. Set `profile.email` and `github` when supplied. Missing links stay out of public view.
+`profile.cvUrl` points at `public/bill-achusim-cv.pdf`, Bill's two-page CV (tuned from his August 2026 résumé); replace that file to update it. LinkedIn and X are already configured with verified details. Set `profile.email` when supplied. Missing links stay out of public view.
 
 ## Contact delivery — NOT CONFIGURED
 The form validates real inputs, but is explicitly unable to send yet. Its Check inquiry action never reports delivery. Set `profile.contactEndpoint` only after integrating a real delivery service. The endpoint must accept JSON `{ name, email, organization, type, message }`, validate server-side, enforce rate limits and spam protection, send/store the inquiry, and return a successful HTTP status only after acceptance. Keep email service keys server-side. Contact currently requires no account or database. If adding server delivery, enable Lovable Cloud and follow the runtime and server-function rules first.
@@ -31,4 +31,4 @@ Each content route provides its own title, description, Open Graph metadata and 
 Run `bun run test`. Preview with the managed development server. The site includes keyboard focus states, a skip link, reduced-motion behavior and an accessible mobile navigation menu. Missing pages receive the custom 404.
 
 ## Still needed from Bill
-Actual CV; professional email and GitHub URL; contact delivery integration; confirmed project technologies, current statuses, roles, milestones and case-study evidence; experience engagement details; dated impact metrics; any additional original articles.
+Professional email; contact delivery integration; confirmed project technologies, current statuses, roles, milestones and case-study evidence; experience engagement details; dated impact metrics; any additional original articles.
