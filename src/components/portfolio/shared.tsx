@@ -33,7 +33,11 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className={pathname.replace(/\/$/, "") === n.to.replace(/\/$/, "") ? "nav-link active" : "nav-link"}
+              className={
+                pathname.replace(/\/$/, "") === n.to.replace(/\/$/, "")
+                  ? "nav-link active"
+                  : "nav-link"
+              }
             >
               {n.name}
             </Link>
@@ -88,12 +92,22 @@ export function SiteFooter() {
             <Link to="/founder">Founder & impact</Link>
             <Link to="/cv">CV</Link>
             <Link to="/contact">Contact</Link>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={profile.twitter} target="_blank" rel="noopener noreferrer">X</a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href={profile.twitter} target="_blank" rel="noopener noreferrer">
+              X
+            </a>
+            <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+            <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
+              Facebook
+            </a>
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Bill Nnamdi Achusim</span>
+          <span>© 2026 Bill Nnamdi Achusim · Nnewi, Anambra, Nigeria</span>
           <span>Built with intention.</span>
         </div>
       </div>
@@ -125,7 +139,7 @@ export function SectionHeading({
 }: {
   number: string;
   title: string;
-  to?: "/projects" | "/about" | "/experience";
+  to?: "/projects" | "/about" | "/experience" | "/insights" | "/founder";
   label?: string;
 }) {
   return (
@@ -142,7 +156,95 @@ export function SectionHeading({
     </div>
   );
 }
+/** An image from an external CDN that removes itself if it fails to load. */
+export function RemoteImage({ className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
+  const [failed, setFailed] = useState(false);
+  if (failed || !props.src) return null;
+  return (
+    <img
+      {...props}
+      className={className}
+      referrerPolicy="no-referrer"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+export function PhoneFrame({
+  src,
+  alt,
+  className = "",
+  eager = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  eager?: boolean;
+}) {
+  return (
+    <div className={`phone-frame ${className}`}>
+      <RemoteImage
+        src={src}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        width={300}
+        height={650}
+      />
+    </div>
+  );
+}
+export function AppIcon({ project, size = 56 }: { project: Project; size?: number }) {
+  if (!project.icon) return null;
+  return (
+    <RemoteImage
+      className="app-icon"
+      src={project.icon}
+      alt={`${project.name} app icon`}
+      width={size}
+      height={size}
+      style={{ width: size, height: size }}
+      loading="lazy"
+    />
+  );
+}
+export function StoreButtons({ project }: { project: Project }) {
+  if (!project.liveUrl && !project.appStoreUrl) return null;
+  return (
+    <div className="store-buttons">
+      {project.appStoreUrl && (
+        <a href={project.appStoreUrl} target="_blank" rel="noopener noreferrer">
+          <span>Download on the</span>App Store
+        </a>
+      )}
+      {project.liveUrl?.includes("play.google.com") && (
+        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+          <span>Get it on</span>Google Play
+        </a>
+      )}
+    </div>
+  );
+}
 export function ProjectVisual({ project, large = false }: { project: Project; large?: boolean }) {
+  if (project.gallery.length > 0)
+    return (
+      <div
+        className={`project-visual app-visual tint-${project.slug} ${large ? "large-visual" : ""}`}
+      >
+        <div className="app-visual-head">
+          <AppIcon project={project} size={44} />
+          {project.tagline && <span>{project.tagline}</span>}
+        </div>
+        <div className="app-visual-phones">
+          {project.gallery.slice(0, 3).map((src, i) => (
+            <PhoneFrame
+              key={src}
+              src={src}
+              alt={`${project.name} screenshot ${i + 1}`}
+              className={`phone-${i}`}
+            />
+          ))}
+        </div>
+      </div>
+    );
   if (project.thumbnail)
     return (
       <div className="project-visual">
@@ -158,23 +260,12 @@ export function ProjectVisual({ project, large = false }: { project: Project; la
   return (
     <div
       className={`project-visual visual-${project.slug} ${large ? "large-visual" : ""}`}
-      aria-label={`${project.name}, project image awaiting supplied artwork`}
+      role="img"
+      aria-label={`${project.name} wordmark`}
     >
       <span className="visual-index">{project.categories[0] || "Independent product"}</span>
       <div className="visual-wordmark">
-        {project.name === "Dear Claire" ? (
-          <>
-            Dear
-            <br />
-            <em>Claire.</em>
-          </>
-        ) : project.name === "AI Clopedia" ? (
-          <>
-            AI<span className="visual-symbol">✳</span>
-            <br />
-            Clopedia
-          </>
-        ) : project.name === "Tech Faculty NG" ? (
+        {project.name === "Tech Faculty NG" ? (
           <>
             tech faculty<span className="visual-symbol">↗</span>
             <br />
@@ -188,7 +279,7 @@ export function ProjectVisual({ project, large = false }: { project: Project; la
           project.name
         )}
       </div>
-      <span className="visual-caption">PROJECT ARTWORK · IMAGE TO FOLLOW</span>
+      <span className="visual-caption">{project.summary ? "" : "DETAILS TO FOLLOW"}</span>
     </div>
   );
 }
@@ -262,9 +353,6 @@ export function PortraitSlot() {
       <span className="visual-caption">PORTRAIT TO FOLLOW</span>
     </div>
   );
-}
-export function Timeline({ compact = false }: { compact?: boolean }) {
-  return null;
 }
 export function ArrowLabel() {
   return <ArrowRight size={18} />;

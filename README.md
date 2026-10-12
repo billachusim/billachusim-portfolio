@@ -3,9 +3,11 @@
 A React / TypeScript portfolio built with TanStack Start and Tailwind CSS v4.
 
 ## Content and factual standards
-All editable content is in `src/content/portfolio.ts`. Keep unverified technologies, dates, metrics, statuses, responsibilities and links empty. Unknown project status is stored as `Status to be confirmed` and is not claimed on project details. Alter Ego is confirmed as a separate product. Four products now include verified artwork and official app store links. Historical Tech Faculty NG metrics are intentionally unpublished: add only with reporting date and definition.
+All editable content is in `src/content/portfolio.ts`. Keep unverified technologies, dates, metrics, statuses, responsibilities and links empty. Unknown project status is stored as `Status to be confirmed` and is not claimed on project details. Alter Ego is confirmed as a separate product. Four products now include verified artwork and official app store links. Headline metrics in `verifiedMetrics` each carry a definition, reporting date and public source URL.
 
 ## Photographs and artwork
+Live apps show screenshots and icons loaded from their official App Store and Google Play listings (`productAssets` in `src/content/portfolio.ts`). They hide themselves if a listing image disappears; re-upload them as Lovable Assets for permanence. Add photographs of Bill to `photos` (empty entries are never rendered).
+
 Set `profile.portrait` to your uploaded portrait's URL. The temporary home image is an editorial workspace, not Bill's photograph. Project tiles are explicitly labelled typographic artwork placeholders, not product screenshots or logos. Set a project's `thumbnail` and `gallery` to your supplied image URLs to replace them. Use Lovable Assets for uploaded files. The shared image layout maintains stable aspect ratios.
 
 ## Projects, experience and skills
